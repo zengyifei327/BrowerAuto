@@ -6,6 +6,7 @@ from webdriver_manager.microsoft import EdgeChromiumDriverManager
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from dotenv import load_dotenv
 
 options = Options()
 options.add_experimental_option("detach", True)
@@ -19,8 +20,10 @@ driver.maximize_window()
 username_field = driver.find_element(By.ID, "NameTextBox")
 username_field.send_keys('yzeng')
 
+load_dotenv(dotenv_path='password.env')
+password = os.getenv('PASSWORD')
 password_field = driver.find_element(By.ID, "PasswordTextBox")
-password_field.send_keys('password')
+password_field.send_keys(password)
 
 login_button = driver.find_element(By.ID, "LoginButton")
 login_button.click()
